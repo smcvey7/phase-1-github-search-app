@@ -14,7 +14,9 @@
 
     <form id='github-form'>
       <input id='search' type='text' name='search'>
-      <input type='submit' name='submit'/>
+      <input type='submit' name='submit'/><br>
+      <input id="username" type="radio" name="search" value="username" checked>username
+      <input id="repo" type="radio" name="search" value="repo">repo<br>
     </form>
 
     <div id='github-container'>
@@ -27,6 +29,12 @@
       </ul>
     </div>
 
+  </div>
+  <!-- hidden container for repos -->
+  <div id="hidden">
+    <ul id = 'hiddenUl'>
+
+    </ul>
   </div>
 
 </body>

@@ -6,8 +6,43 @@
 
 #github-container {
   display: flex;
+  z-index: 0;
 }
 
 ul {
   list-style: none;
+}
+
+li.usernames {
+  display: inline-grid;
+  margin: 20px;
+  border-style: solid;
+  text-align: center;
+}
+
+div#hidden{
+  z-index: 1;
+  height: 50%;
+  width: 100%;
+  background-color: rgb(181, 250, 227);
+  position:fixed;
+  bottom: 0px;
+  display: none;
+  overflow: auto;
+}
+
+a:visited{
+  color: coral;
+}
+
+
+.repoLink{
+  color: rgb(214, 23, 176);
+}
+.repoLink:hover{
+  text-decoration: underline;
+}
+
+p.repos:hover{
+  text-decoration: underline;
 }
