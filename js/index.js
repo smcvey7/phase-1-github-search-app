@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () =>{
     let query = document.getElementById('search').value;
 
     if (document.getElementById('username').checked === true){
+      document.getElementById('user-list').innerHTML = '';
+      document.getElementById('hidden').style.display = 'none'
       fetch(`https://api.github.com/search/users?q=${query}`, {
           method: "GET",
           headers: {
@@ -65,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () =>{
               headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-        },
+              },
             })
             .then(res => res.json())
             .then(data =>{
@@ -105,7 +107,39 @@ document.addEventListener('DOMContentLoaded', () =>{
 
       })
     }else{
-      console.log('none')
+      document.getElementById('user-list').innerHTML = '';
+      document.getElementById('hidden').style.display = 'none'
+      fetch(`https://api.github.com/search/repositories?q=${query}`, {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+              },
+            })
+            .then(res => res.json())
+            .then(data =>{
+              for (repo of data.items){
+                const reposURL = repo['html_url'];
+                const li = document.createElement('li');
+                li.className = 'repos';
+                const a = document.createElement('a');
+                a.textContent = `${repo.name}:`
+                a.href = reposURL;
+                const p = document.createElement('p');
+                if (repo.description === null){
+                  p.textContent = `no description available`
+                  p.style.fontStyle = 'italic'
+                } else{
+                  p.textContent = `  ${repo.description}`
+                }
+                
+                
+                li.appendChild(a);
+                li.appendChild(p)
+
+                document.getElementById('user-list').appendChild(li)
+              }
+            })
     }
   })
 
